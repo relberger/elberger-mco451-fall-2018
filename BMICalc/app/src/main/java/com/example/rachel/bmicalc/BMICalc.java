@@ -58,6 +58,29 @@ public class BMICalc
             throw new IllegalStateException ("Cannot get BMI before setting weight and height.");
     }
 
+    public String getBMIGroup()
+    {
+        double currentBMI = getBMI();
+        String BMIGroup;
+        if (currentBMI < 18.5)
+        {
+            BMIGroup = "Underweight";
+        }
+        else if (currentBMI < 25)
+        {
+            BMIGroup = "Healthy weight";
+        }
+        else if (currentBMI < 30)
+        {
+            BMIGroup = "Overweight";
+        }
+        else
+        {
+            BMIGroup = "Obese";
+        }
+        return BMIGroup;
+    }
+
     public static BMICalc getObjectFromJSONString (String json)
     {
         Gson gson = new Gson ();

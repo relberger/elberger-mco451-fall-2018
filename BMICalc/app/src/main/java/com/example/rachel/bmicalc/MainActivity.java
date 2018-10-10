@@ -1,5 +1,6 @@
 package com.example.rachel.bmicalc;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -57,17 +58,38 @@ public class MainActivity extends AppCompatActivity {
                 strHeight = mEtHeight.getText().toString();
                 strWeight = mEtWeight.getText().toString();
 
-                height = Double.parseDouble(strHeight);
-                weight = Double.parseDouble(strWeight);
+                try
+                {
+                    height = Double.parseDouble(strHeight);
+                    weight = Double.parseDouble(strWeight);
 
-                // put edit text values into calc object
-                mCalc.setHeight(height);
-                mCalc.setWeight(weight);
+                    // put edit text values into calc object
+                    mCalc.setHeight(height);
+                    mCalc.setWeight(weight);
 
-                // show user BMI
+                    // show user BMI
+                    Snackbar.make(view, "BMI is " + mCalc.getBMI(), Snackbar.LENGTH_LONG)
+                            .setAction("More Details...", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Intent intent = new Intent(getApplicationContext(), ResultsActivity.class);
 
-                Snackbar.make(view, "BMI is " + mCalc.getBMI(), Snackbar.LENGTH_LONG)
-                        .show();
+                                    // serialize the BMI object and store it in the intent
+                                    String currentBMIObject = BMICalc.getJSONStringFromObject(mCalc);
+                                    intent.putExtra("BMI", currentBMIObject);
+                                    // start the Results Activity, passing above results to it
+                                    startActivity(intent);
+                                }
+                            })
+                            .show();
+                }
+                catch (IllegalArgumentException iae)
+                {
+                    Snackbar.make(view, "Error! Height and Weight must be greater than zero."
+                                    , Snackbar.LENGTH_LONG)
+                                    .show();
+                }
+
             }
         });
     }
