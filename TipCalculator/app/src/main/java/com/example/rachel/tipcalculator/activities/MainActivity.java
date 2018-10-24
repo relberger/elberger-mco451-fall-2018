@@ -62,6 +62,9 @@ public class MainActivity extends AppCompatActivity
     {
         setDefaultValuesForPreferences ();                      // Set defaults before restoring
         restorePreferences ();                                  // This will set mUseNightMode
+
+        mUseNightMode = true;
+
         Utils.getLocationPermission (this,
                 sREQUEST_CODE_LOCATION_PERMISSION);  // get actual sunset
         AppCompatDelegate.setDefaultNightMode (mUseNightMode ?
