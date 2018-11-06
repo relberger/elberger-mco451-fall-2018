@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.rachel.tipcalculator.R;
 import com.example.rachel.tipcalculator.classes.KeyPadController;
@@ -112,6 +113,40 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id)
+        {
+            case R.id.menu_settings:
+                showSettings();
+                return true;
+            case R.id.menu_calculate:
+                calculate(true);
+                return true;
+            case R.id.menu_clearField:
+                //To Do
+                return true;
+            case R.id.menu_resetAll:
+                resetAll();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void resetAll() {
+    }
+
+    private void showSettings() {
+    }
+
+    @Override
     public void onRequestPermissionsResult (int requestCode, @NonNull String[] permissions,
                                             @NonNull int[] grantResults)
     {
@@ -125,5 +160,9 @@ public class MainActivity extends AppCompatActivity
         else {
             super.onRequestPermissionsResult (requestCode, permissions, grantResults);
         }
+    }
+
+    public void showAbout(MenuItem item) {
+        Toast.makeText(getApplicationContext(), "About...", Toast.LENGTH_LONG).show();
     }
 }
