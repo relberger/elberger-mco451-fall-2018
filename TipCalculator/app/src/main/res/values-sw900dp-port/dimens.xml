@@ -20,5 +20,4 @@
 
     <!-- The numberPad will have its own minimum height and width -->
     <dimen name="numberPad_minWidth">230dp</dimen>
-
 </resources>

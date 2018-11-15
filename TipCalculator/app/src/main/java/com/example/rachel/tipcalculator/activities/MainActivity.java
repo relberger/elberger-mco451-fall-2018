@@ -416,9 +416,16 @@ public class MainActivity extends AppCompatActivity
                 settings.getString (mSUBTOTAL_PREF_KEY, mFieldSubTotal.getText ().toString ());
         mFieldSubTotal.setText (currentString);
 
+        saveCurrentViewAndTextBeforeChange(mFieldSubTotal);
+        mFieldSubTotal.setText (currentString);
+        updateCurrentTipCalcObjectOrRevertText (mFieldSubTotal);
+
         currentString = settings.getString (mPAYERS_PREF_KEY, mFieldPayers.getText ().toString ());
         mFieldPayers.setText (currentString);
 
+        saveCurrentViewAndTextBeforeChange(mFieldPayers);
+        mFieldPayers.setText (currentString);
+        updateCurrentTipCalcObjectOrRevertText (mFieldPayers);
     }
 
     private void restorePreferences ()
