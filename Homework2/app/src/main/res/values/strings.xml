@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Homework2</string>
     <string name="action_settings">Settings</string>
+    <string name="guess_winning_number">Please guess the winning number.</string>
+    <string name="welcome_new_game">Welcome to a new game…</string>
+    <string name="win_game">You Win!</string>
+    <string name="lose_game">You Lose</string>
 </resources>
